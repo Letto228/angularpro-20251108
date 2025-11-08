@@ -8,7 +8,7 @@ import { EMPTY, Observable } from 'rxjs';
 export class CustomPreloadingService implements PreloadingStrategy {
   // `preload` вызывается для каждого лениво загружаемого пути, кроме того, что уже загружен
   preload(route: Route, load: () => Observable<unknown>): Observable<unknown> {
-      if (...) {
+      if (route.data && 'needPreload' in route.data) {
           // если хотим предзагрузить чанк - возвращаем из метода результат вызова функции полученной во втором аргументе метода `preload` - `load()`
           return load();
       }

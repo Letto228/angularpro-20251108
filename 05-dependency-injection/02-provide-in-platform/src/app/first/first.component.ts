@@ -11,6 +11,8 @@ export class FirstComponent {
   constructor(private dataService: DataService, app: ApplicationRef) { 
     this.dataService.data$().subscribe(data => {
       this.number = data;
+
+      app.tick();
     });
   }
 

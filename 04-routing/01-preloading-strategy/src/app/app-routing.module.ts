@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { NoPreloading, RouterModule, Routes } from '@angular/router';
+import { NoPreloading, PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CustomPreloadingService } from './custom-preloading.service';
 
 const routes: Routes = [
   {
@@ -9,11 +10,14 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+    data: {
+      needPreload: true,
+    }
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {preloadingStrategy: NoPreloading})],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy: CustomPreloadingService})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

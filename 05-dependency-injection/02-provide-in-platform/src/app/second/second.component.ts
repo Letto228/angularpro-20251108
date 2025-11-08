@@ -1,4 +1,4 @@
-import { Component, ApplicationRef } from '@angular/core';
+import { Component, ApplicationRef, NgZone } from '@angular/core';
 import { DataService } from '../data.service';
 
 @Component({
@@ -8,9 +8,11 @@ import { DataService } from '../data.service';
 export class SecondComponent {
   number = 0;
 
-  constructor(private dataService: DataService, app: ApplicationRef) { 
+  constructor(private dataService: DataService, ngZone: NgZone) { 
     this.dataService.data$().subscribe(data => {
-      this.number = data;
+      ngZone.run(() => {
+        this.number = data;
+      })
     });
   }
 
