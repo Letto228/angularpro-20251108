@@ -1,6 +1,6 @@
-import { Component, InjectionToken, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NAME_TOKEN } from './name.token';
 
-export const NAME_TOKEN = new InjectionToken('Name');
 
 @Component({
   selector: 'app-undeclarated',

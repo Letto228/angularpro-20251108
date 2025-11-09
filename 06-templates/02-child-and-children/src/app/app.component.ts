@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ContentChild, ElementRef, ViewChild } from '@angular/core';
+import { ZooComponent } from './zoo/zoo.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'contentchildren-by-service';
+
+  // @ViewChild('zooComponent')
+  @ViewChild(ZooComponent)
+  private readonly zooComponent: ZooComponent | undefined;
+  @ViewChild(ZooComponent, {read: ElementRef})
+  private readonly zooElementRef: ElementRef | undefined;
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ContentChild, ContentChildren, QueryList } from '@angular/core';
+import { Animal } from '../animal';
 
 
 @Component({
@@ -7,9 +8,10 @@ import { Component } from '@angular/core';
 })
 export class ZooComponent {
 
-  // animals ?
+  @ContentChildren(Animal)
+  animals: QueryList<Animal> | undefined
 
   say() {
-    this.animals.forEach(animal => animal.say());
+    this.animals?.forEach(animal => animal.say());
   }
 }
